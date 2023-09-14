@@ -1,0 +1,20 @@
+void charc2(float x, float y, float d){
+  d*=1.8;
+  noStroke();
+  fill(0);
+  ellipse(x-2*d,y-d,2*d,2*d);//왼쪽귀
+  ellipse(x+2*d,y-1*d,2*d,2*d);//오른쪽귀
+  fill(255);
+  ellipse(x,y+1*d,7*d,4*d);//볼
+  arc(x,y,6.0*d,4.0*d,radians(180),radians(360));//이마
+  fill(255,204,204);
+  ellipse(x-2.0*d,y+1.5*d,2*d,1.5*d);//왼볼터치
+  ellipse(x+2.0*d,y+1.5*d,2*d,1.5*d);//오볼터치
+  fill(0);
+  triangle(x-0.5*d,y+1.0*d,x+0.5*d,y+1.0*d,x,y+1.0*d+0.5*d);//코
+  ellipse(x-1.5*d,y+0.5*d,2.0*d,2.0*d);//왼쪽눈
+  ellipse(x+1.5*d,y+0.5*d,2.0*d,2.0*d);//오른쪽눈
+  fill(255);
+  ellipse(x-1.5*d,y+0.5*d,0.4*d,0.2*d);//왼쪽흰자
+  ellipse(x+1.5*d,y+0.5*d,0.4*d,0.2*d);//오른쪽흰자
+}
