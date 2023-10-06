@@ -2,17 +2,13 @@
 using namespace std;
 
 /*
-int main() {
+int main() {			//1D array
 	//A, B 행렬 구현 -> 계산 결과 C 행렬로
 	int N_A, M_A, N_B, M_B;
 	cout << "A 행렬에서 N, M을 순서대로 입력하세요 : ";
 	cin >> N_A >> M_A;
 	cout << "B 행렬에서 N, M을 순서대로 입력하세요 : ";
 	cin >> N_B >> M_B;
-	if (M_A != N_B) {			//A행렬의 열과 B행렬의 행이 일치해야 함
-		cout << "행렬의 곱이 성립되지 않습니다." << endl;
-		return 0;
-	}
 	float* A, * B, * C;
 	A = new float[N_A * M_A];
 	B = new float[N_B * M_B];
@@ -25,8 +21,12 @@ int main() {
 	for (int i = 0; i < N_B * M_B; i++) {
 		cin >> B[i];
 	}
-
-	//1D array
+	
+	//matrix multi
+	if (M_A != N_B) {			//A행렬의 열과 B행렬의 행이 일치해야 함
+		cout << "행렬의 곱이 성립되지 않습니다." << endl;
+		return 0;
+	}
 	float result = 0;
 	for (int n = 0; n < N_A; n++) {
 		for (int m = 0; m < M_B; m++) {
@@ -38,7 +38,32 @@ int main() {
 			result = 0;
 		}
 	}
+
+
+	//matrix add
+	if((N_A != N_B) || (M_A != M_B)) {
+		cout << "행렬의 덧셈이 성립하지 않습니다.";
+		return 0;
+	}
+	for (int n = 0; n < N_A; n++) {
+		for (int m = 0; m < M_B; m++) {
+			C[n * M_B + m] = A[n * M_B + m] + B[n * M_B + m];
+		}
+	}
+
+
+	//matix minus
+	if ((N_A != N_B) || (M_A != M_B)) {
+		cout << "행렬의 뺄셈이 성립하지 않습니다.";
+		return 0;
+	}
+	for (int n = 0; n < N_A; n++) {
+		for (int m = 0; m < M_B; m++) {
+			C[n * M_B + m] = A[n * M_B + m] - B[n * M_B + m];
+		}
+	}
 	
+
 	//show C matrix
 	for (int i = 0; i < N_A; i++) {
 		for (int j = 0; j < M_B; j++) {
@@ -49,16 +74,15 @@ int main() {
 }
 */
 
-int main() {
+
+
+
+int main() {		//2D array matrix
 	int N_A, M_A, N_B, M_B;
 	cout << "A 행렬에서 N, M을 순서대로 입력하세요 : ";
 	cin >> N_A >> M_A;
 	cout << "B 행렬에서 N, M을 순서대로 입력하세요 : ";
 	cin >> N_B >> M_B;
-	if (M_A != N_B) {			//A행렬의 열과 B행렬의 행이 일치해야 함
-		cout << "행렬의 곱이 성립되지 않습니다." << endl;
-		return 0;
-	}
 	float** A, ** B, ** C;
 	A = new float* [N_A];
 	for (int n = 0; n < N_A; n++) {
@@ -85,7 +109,11 @@ int main() {
 		}
 	}
 	
-	//2D array
+	//matix multi
+	if (M_A != N_B) {			//A행렬의 열과 B행렬의 행이 일치해야 함
+		cout << "행렬의 곱이 성립되지 않습니다." << endl;
+		return 0;
+	}
 	for (int n = 0; n < N_A; n++) {
 		for (int m = 0; m < M_B; m++) {
 			C[n][m] = 0;
@@ -94,6 +122,31 @@ int main() {
 			}
 		}
 	}
+
+
+	//matix add
+	if ((N_A != N_B) || (M_A != M_B)) {			//A행렬의 열과 B행렬의 행이 일치해야 함
+		cout << "행렬의 덧셈이 성립되지 않습니다." << endl;
+		return 0;
+	}
+	for (int n = 0; n < N_A; n++) {
+		for (int m = 0; m < M_B; m++) {
+			C[n][m] = A[n][m] + B[n][m];
+		}
+	}
+
+
+	//matrix minus
+	if ((N_A != N_B) || (M_A != M_B)) {			//A행렬의 열과 B행렬의 행이 일치해야 함
+		cout << "행렬의 뺄셈이 성립되지 않습니다." << endl;
+		return 0;
+	}
+	for (int n = 0; n < N_A; n++) {
+		for (int m = 0; m < M_B; m++) {
+			C[n][m] = A[n][m] - B[n][m];
+		}
+	}
+
 
 	//show C matrix
 	for (int i = 0; i < N_A; i++) {
