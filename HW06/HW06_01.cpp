@@ -36,7 +36,7 @@ float getLength(int eumpyo, int rate) {
     if (eumpyo == 4)	T = 1.0;
     else if (eumpyo == 8)	T = 0.5;
     else if (eumpyo == 16)	T = 0.25;
-    return T * rate;                   //설정다시
+    return T * rate;                   //설정
 }
 
 
