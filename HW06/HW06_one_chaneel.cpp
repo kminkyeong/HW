@@ -35,7 +35,7 @@ float getLength(int eumpyo, int rate) {
     if (eumpyo == 4)	T = 1.0;
     else if (eumpyo == 8)	T = 0.5;
     else if (eumpyo == 16)	T = 0.25;
-    return T * rate;                   //¼³Á¤´Ù½Ã
+    return T * rate;                   //ì„¤ì •ë‹¤ì‹œ
 }
 
 
@@ -49,24 +49,24 @@ int main() {
         cout << "no Beatles file";
         return 1;
     }
-    xx.read(header, 44 * sizeof(char));     //±âÁ¸ ÆÄÀÏ Çì´õ ÀĞ±â
+    xx.read(header, 44 * sizeof(char));     //ê¸°ì¡´ íŒŒì¼ í—¤ë” ì½ê¸°
 
     short* n;
-    n = (short*)(header + 22);              //numchannels ÀĞ±â
+    n = (short*)(header + 22);              //numchannels ì½ê¸°
     int* fs;
-    fs = (int*)(header + 24);               //samplerate ÀĞ±â
+    fs = (int*)(header + 24);               //samplerate ì½ê¸°
     int* b;
-    b = (int*)(header + 28);                //Byterate ÀĞ±â
+    b = (int*)(header + 28);                //Byterate ì½ê¸°
 
-    int N = fs[0] * 10;                     //N->10*samplerate ·Î 10ÃÊ ¸¸µé±â
+    int N = fs[0] * 10;                     //N->10*samplerate ë¡œ 10ì´ˆ ë§Œë“¤ê¸°
     short* data;
-    data = new short[N];                    //wav ÆÄÀÏ¿¡ ÀÔ·ÂÇÒ data ¸¸µé±â
+    data = new short[N];                    //wav íŒŒì¼ì— ì…ë ¥í•  data ë§Œë“¤ê¸°
 
     xx.close();
 
 
     int cnt;
-    ifstream zz("music.txt");               //Á¤º¸ µé¾îÀÖ´Â ÅØ½ºÆ® ÆÄÀÏ ÀĞ±â
+    ifstream zz("music.txt");               //ì •ë³´ ë“¤ì–´ìˆëŠ” í…ìŠ¤íŠ¸ íŒŒì¼ ì½ê¸°
     if (!zz) {
         cout << "No 'music.txt' file.";
         return 1;
@@ -78,7 +78,7 @@ int main() {
         cout << "no 'my.wav' file.";
         return 1;
     }
-    yy.write(header, 44 * sizeof(char));        //Çì´õ ÀÛ¼º
+    yy.write(header, 44 * sizeof(char));        //í—¤ë” ì‘ì„±
 
     int length, size;
     string note;
@@ -89,7 +89,7 @@ int main() {
 
         const float pi = 3.141592;
         float dt = 1.0 / fs[0];
-        for (int j = 0; j < soundLength; j++) {         //¼³Á¤´Ù½Ã?
+        for (int j = 0; j < soundLength; j++) {         //ì„¤ì •ë‹¤ì‹œ?
             data[j] = (short)(size * sin(2.0 * pi * frequency * j * dt));
         }
         yy.write((char*)data, soundLength * sizeof(short));
