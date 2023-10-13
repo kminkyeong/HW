@@ -7,6 +7,7 @@ using namespace std;
 float getfrequency(string freq) {
     float f = 0.0;
     if (freq == "3C")	f = 130.81;
+    else if (freq == "2B")	f = 246.94/2;
     else if (freq == "3D")	f = 146.83;
     else if (freq == "3E")	f = 164.81;
     else if (freq == "3F")	f = 174.61;
@@ -35,7 +36,7 @@ float getLength(int eumpyo, int rate) {
     if (eumpyo == 4)	T = 1.0;
     else if (eumpyo == 8)	T = 0.5;
     else if (eumpyo == 16)	T = 0.25;
-    return T * rate;                   //설정
+    return T * rate;                   //설정다시
 }
 
 
@@ -79,18 +80,26 @@ int main() {
         return 1;
     }
     yy.write(header, 44 * sizeof(char));        //헤더 작성
-
     int length, size;
+    float f1=440, f2=440;
     string note;
     for (int i = 0; i < cnt; i++) {
         zz >> length >> note >> size;
-        float frequency = getfrequency(note);
+        if (i % 2) {
+            f1 = getfrequency(note);
+        }
+        else {
+            f2 = getfrequency(note);
+        }
+        
         float soundLength = getLength(length, fs[0]);
 
         const float pi = 3.141592;
         float dt = 1.0 / fs[0];
-        for (int j = 0; j < soundLength; j++) {         //설정
-            data[j] = (short)(size * sin(2.0 * pi * frequency * j * dt));
+        for (int j = 0; j < soundLength; j++) {
+            float f1_sample = size * sin(2.0 * pi * f1 * j * dt);
+            float f2_sample = size * sin(2.0 * pi * f2 * j * dt);
+            data[j] = static_cast<short>(f1_sample + f2_sample);
         }
         yy.write((char*)data, soundLength * sizeof(short));
     }
@@ -101,5 +110,6 @@ int main() {
 
     return 0;
 }
+
 
 
