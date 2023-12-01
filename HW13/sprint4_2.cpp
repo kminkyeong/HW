@@ -42,7 +42,7 @@ public:
         cout << "Average queue fullness: " << averageFullness << "%\n";
         cout << "Packet loss rate: " << lost << "\n";
 
-        // ½ÇÇè °á°ú¸¦ ÆÄÀÏ¿¡ ÀúÀå
+        // ì‹¤í—˜ ê²°ê³¼ë¥¼ íŒŒì¼ì— ì €ì¥
         outFile << NO << "\t" << averageFullness << "\t" << lost << "\n";
     }
 
@@ -74,7 +74,7 @@ int main() {
 
     ofstream outFile("sprint4.txt");
 
-    // NO¸¦ º¯È­½ÃÅ°±â
+    // NOë¥¼ ë³€í™”ì‹œí‚¤ê¸°
     for (int varyingNO = 5; varyingNO <= 15; varyingNO += 2) {
         Queue queue(fixedNI, varyingNO, fixedCapacity);
 
