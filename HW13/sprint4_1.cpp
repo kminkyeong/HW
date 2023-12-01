@@ -38,7 +38,7 @@ public:
             float queue_infullness = (float(queue.size()) / capacity) * 100;
             queueFullness.push_back(queue_infullness);
 
-            // 2ºÐ Áö³²
+            // 2ë¶„ ì§€ë‚¨
             if (i == 119) {
                 NofPackets[i] = queue.size();
             }
@@ -49,7 +49,7 @@ public:
         cout << "Average Queue Fullness: " << averageFullness << "%\n";
         cout << "Packet Loss Rate: " << lost << "\n";
 
-        // 2ºÐÀÌ Áö³­ ÈÄ NofPackets[120]¿¡ ÀúÀåµÈ °ªÀÇ Æò±Õ, ÃÖ°íÄ¡ ±¸ÇÔ
+        // 2ë¶„ì´ ì§€ë‚œ í›„ NofPackets[120]ì— ì €ìž¥ëœ ê°’ì˜ í‰ê· , ìµœê³ ì¹˜ êµ¬í•¨
         float sum = 0;
         int max_Packets = NofPackets[0];
 
@@ -63,10 +63,10 @@ public:
 
         float averagePackets = sum / 120.0;
 
-        cout << "Æò±Õ : " << averagePackets << "\n";
-        cout << "ÃÖ°íÄ¡ : " << max_Packets << "\n";
+        cout << "í‰ê·  : " << averagePackets << "\n";
+        cout << "ìµœê³ ì¹˜ : " << max_Packets << "\n";
 
-        // NofPackets[120]¸¦ text file¿¡ ÀúÀå
+        // NofPackets[120]ë¥¼ text fileì— ì €ìž¥
         outFile << "Time\tPackets\n";
         for (int i = 0; i < 120; i++) {
             outFile << i << "\t" << NofPackets[i] << "\n";
